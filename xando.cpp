@@ -330,39 +330,39 @@ void XandO::enemyMove(int value)
     {
     case 1:
             pushButton->setText(enemy);
-            pushButton->disconnect(pushButton, SIGNAL(clicked()), this, SLOT(on_pushButton_clicked()));
+            buttonDisconnect(1);
         break;
     case 2:
             pushButton_2->setText(enemy);
-            pushButton_2->disconnect(pushButton_2, SIGNAL(clicked()), this, SLOT(on_pushButton_2_clicked()));
+            buttonDisconnect(2);
         break;
     case 3:
             pushButton_3->setText(enemy);
-            pushButton_3->disconnect(pushButton_3, SIGNAL(clicked()), this, SLOT(on_pushButton_3_clicked()));
+            buttonDisconnect(3);
         break;
     case 4:
             pushButton_4->setText(enemy);
-            pushButton_4->disconnect(pushButton_4, SIGNAL(clicked()), this, SLOT(on_pushButton_4_clicked()));
+            buttonDisconnect(4);
         break;
     case 5:
             pushButton_5->setText(enemy);
-            pushButton_5->disconnect(pushButton_5, SIGNAL(clicked()), this, SLOT(on_pushButton_5_clicked()));
+            buttonDisconnect(5);
         break;
     case 6:
             pushButton_6->setText(enemy);
-            pushButton_6->disconnect(pushButton_6, SIGNAL(clicked()), this, SLOT(on_pushButton_6_clicked()));
+            buttonDisconnect(6);
         break;
     case 7:
             pushButton_7->setText(enemy);
-            pushButton_7->disconnect(pushButton_7, SIGNAL(clicked()), this, SLOT(on_pushButton_7_clicked()));
+            buttonDisconnect(7);
         break;
     case 8:
             pushButton_8->setText(enemy);
-            pushButton_8->disconnect(pushButton_8, SIGNAL(clicked()), this, SLOT(on_pushButton_8_clicked()));
+            buttonDisconnect(8);
         break;
     case 9:
             pushButton_9->setText(enemy);
-            pushButton_9->disconnect(pushButton_9, SIGNAL(clicked()), this, SLOT(on_pushButton_9_clicked()));
+            buttonDisconnect(9);
         break;
     }
 }
