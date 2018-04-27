@@ -15,14 +15,21 @@ explicit XandO(QWidget *parent = 0);
 ~XandO();
 
 signals:
-    void allButtonClicked();
+    void allButtonUsed();
 private:
 // Окремий метод для створення інтерфейсу програми
 void createWidgets();
-void isAllButtonClicked();
+bool isAllButtonClicked();
+void isAllButtonUsed();
+void waitForMove();
+void disableButtons(bool value);
+void enemyMove(int value);
+bool isButtonEmpty(int value);
+bool isAllButtonEmpty();
 
 private:
 QString side;
+QString enemy;
 QComboBox *comboBox;
 QLabel *label;
 QPushButton *pushButton;
