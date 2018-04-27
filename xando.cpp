@@ -331,45 +331,8 @@ void XandO::disableAllButtons(bool value)
 
 void XandO::enemyMove(int value)
 {
-    switch (value)
-    {
-    case 1:
-            pushButton->setText(enemy);
-            buttonDisconnect(1);
-        break;
-    case 2:
-            pushButton_2->setText(enemy);
-            buttonDisconnect(2);
-        break;
-    case 3:
-            pushButton_3->setText(enemy);
-            buttonDisconnect(3);
-        break;
-    case 4:
-            pushButton_4->setText(enemy);
-            buttonDisconnect(4);
-        break;
-    case 5:
-            pushButton_5->setText(enemy);
-            buttonDisconnect(5);
-        break;
-    case 6:
-            pushButton_6->setText(enemy);
-            buttonDisconnect(6);
-        break;
-    case 7:
-            pushButton_7->setText(enemy);
-            buttonDisconnect(7);
-        break;
-    case 8:
-            pushButton_8->setText(enemy);
-            buttonDisconnect(8);
-        break;
-    case 9:
-            pushButton_9->setText(enemy);
-            buttonDisconnect(9);
-        break;
-    }
+    list.at(value)->setText(enemy);
+    buttonDisconnect(value);
 }
 
 bool XandO::isButtonEmpty(int value)
