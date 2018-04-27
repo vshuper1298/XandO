@@ -337,63 +337,67 @@ void XandO::enemyMove(int value)
 
 bool XandO::isButtonEmpty(int value)
 {
-    switch (value)
-    {
-    case 1:
-        if (pushButton->text().isEmpty())
-            return true;
-        else
-            return false;
-        break;
-    case 2:
-        if (pushButton_2->text().isEmpty())
-            return true;
-        else
-            return false;
-        break;
-    case 3:
-        if (pushButton_3->text().isEmpty())
-            return true;
-        else
-            return false;
-        break;
-    case 4:
-        if (pushButton_4->text().isEmpty())
-            return true;
-        else
-            return false;
-        break;
-    case 5:
-        if (pushButton_5->text().isEmpty())
-            return true;
-        else
-            return false;
-        break;
-    case 6:
-        if (pushButton_6->text().isEmpty())
-            return true;
-        else
-            return false;
-        break;
-    case 7:
-        if (pushButton_7->text().isEmpty())
-            return true;
-        else
-            return false;
-        break;
-    case 8:
-        if (pushButton_8->text().isEmpty())
-            return true;
-        else
-            return false;
-        break;
-    case 9:
-        if (pushButton_9->text().isEmpty())
-            return true;
-        else
-            return false;
-        break;
-    }
+    if (list.at(value)->text().isEmpty())
+        return true;
+    else
+        return false;
+//    switch (value)
+//    {
+//    case 1:
+//        if (pushButton->text().isEmpty())
+//            return true;
+//        else
+//            return false;
+//        break;
+//    case 2:
+//        if (pushButton_2->text().isEmpty())
+//            return true;
+//        else
+//            return false;
+//        break;
+//    case 3:
+//        if (pushButton_3->text().isEmpty())
+//            return true;
+//        else
+//            return false;
+//        break;
+//    case 4:
+//        if (pushButton_4->text().isEmpty())
+//            return true;
+//        else
+//            return false;
+//        break;
+//    case 5:
+//        if (pushButton_5->text().isEmpty())
+//            return true;
+//        else
+//            return false;
+//        break;
+//    case 6:
+//        if (pushButton_6->text().isEmpty())
+//            return true;
+//        else
+//            return false;
+//        break;
+//    case 7:
+//        if (pushButton_7->text().isEmpty())
+//            return true;
+//        else
+//            return false;
+//        break;
+//    case 8:
+//        if (pushButton_8->text().isEmpty())
+//            return true;
+//        else
+//            return false;
+//        break;
+//    case 9:
+//        if (pushButton_9->text().isEmpty())
+//            return true;
+//        else
+//            return false;
+//        break;
+    //}
 }
 
 void XandO::buttonDisconnect(int value)
