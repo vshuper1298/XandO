@@ -14,7 +14,6 @@ resize(300, 300);
 setWindowTitle("X's and O's");
 createWidgets();
 
-
 connect(pushButton, SIGNAL(clicked()), this, SLOT(on_pushButton_clicked()));
 connect(pushButton_2, SIGNAL(clicked()), this, SLOT(on_pushButton_2_clicked()));
 connect(pushButton_3, SIGNAL(clicked()), this, SLOT(on_pushButton_3_clicked()));
@@ -233,90 +232,63 @@ void XandO::gameOver()
     }
 }
 
-void XandO::on_pushButton_clicked()
+void XandO::buttonClicked(QPushButton *button, int number)
 {
-    pushButton->setText(side);
-    pushButton->setDisabled(true);
-    pushButton->disconnect(pushButton, SIGNAL(clicked()), this, SLOT(on_pushButton_clicked()));
+    button->setText(side);
+    button->setDisabled(true);
+    buttonDisconnect(number);
     isAllButtonUsed();
     waitForMove();
+}
+
+void XandO::on_pushButton_clicked()
+{
+    buttonClicked(pushButton, 1);
 }
 
 void XandO::on_pushButton_2_clicked()
 {
-    pushButton_2->setText(side);
-    pushButton_2->setDisabled(true);
-    pushButton_2->disconnect(pushButton_2, SIGNAL(clicked()), this, SLOT(on_pushButton_2_clicked()));
-    isAllButtonUsed();
-    waitForMove();
+    buttonClicked(pushButton_2, 2);
 }
 
 void XandO::on_pushButton_3_clicked()
 {
-    pushButton_3->setText(side);
-    pushButton_3->setDisabled(true);
-    pushButton_3->disconnect(pushButton_3, SIGNAL(clicked()), this, SLOT(on_pushButton_3_clicked()));
-    isAllButtonUsed();
-    waitForMove();
+    buttonClicked(pushButton_3, 3);
 }
 
 void XandO::on_pushButton_4_clicked()
 {
-    pushButton_4->setText(side);
-    pushButton_4->setDisabled(true);
-    pushButton_4->disconnect(pushButton_4, SIGNAL(clicked()), this, SLOT(on_pushButton_4_clicked()));
-    isAllButtonUsed();
-    waitForMove();
+    buttonClicked(pushButton_4, 4);
 }
 
 void XandO::on_pushButton_5_clicked()
 {
-    pushButton_5->setText(side);
-    pushButton_5->setDisabled(true);
-    pushButton_5->disconnect(pushButton_5, SIGNAL(clicked()), this, SLOT(on_pushButton_5_clicked()));
-    isAllButtonUsed();
-    waitForMove();
+    buttonClicked(pushButton_5, 5);
 }
 
 void XandO::on_pushButton_6_clicked()
 {
-    pushButton_6->setText(side);
-    pushButton_6->setDisabled(true);
-    pushButton_6->disconnect(pushButton_6, SIGNAL(clicked()), this, SLOT(on_pushButton_6_clicked()));
-    isAllButtonUsed();
-    waitForMove();
+    buttonClicked(pushButton_6, 6);
 }
 
 void XandO::on_pushButton_7_clicked()
 {
-    pushButton_7->setText(side);
-    pushButton_7->setDisabled(true);
-    pushButton_7->disconnect(pushButton_7, SIGNAL(clicked()), this, SLOT(on_pushButton_7_clicked()));
-    isAllButtonUsed();
-    waitForMove();
+    buttonClicked(pushButton_7, 7);
 }
 
 void XandO::on_pushButton_8_clicked()
 {
-    pushButton_8->setText(side);
-    pushButton_8->setDisabled(true);
-    pushButton_8->disconnect(pushButton_8, SIGNAL(clicked()), this, SLOT(on_pushButton_8_clicked()));
-    isAllButtonUsed();
-    waitForMove();
+    buttonClicked(pushButton_8, 8);
 }
 
 void XandO::on_pushButton_9_clicked()
 {
-    pushButton_9->setText(side);
-    pushButton_9->setDisabled(true);
-    pushButton_9->disconnect(pushButton_9, SIGNAL(clicked()), this, SLOT(on_pushButton_9_clicked()));
-    isAllButtonUsed();
-    waitForMove();
+    buttonClicked(pushButton_9, 9);
 }
 
 void XandO::waitForMove()
 {
-    disableButtons(true);
+    disableAllButtons(true);
     int x = (qrand() % 9)+1;
     qDebug() << isButtonEmpty(x);
     if (isButtonEmpty(x))
@@ -336,10 +308,10 @@ void XandO::waitForMove()
             enemyMove(x);
     }
     isAllButtonUsed();
-    disableButtons(false);
+    disableAllButtons(false);
 }
 
-void XandO::disableButtons(bool value)
+void XandO::disableAllButtons(bool value)
 {
     pushButton->setDisabled(value);
     pushButton_2->setDisabled(value);
@@ -358,30 +330,39 @@ void XandO::enemyMove(int value)
     {
     case 1:
             pushButton->setText(enemy);
+            pushButton->disconnect(pushButton, SIGNAL(clicked()), this, SLOT(on_pushButton_clicked()));
         break;
     case 2:
             pushButton_2->setText(enemy);
+            pushButton_2->disconnect(pushButton_2, SIGNAL(clicked()), this, SLOT(on_pushButton_2_clicked()));
         break;
     case 3:
             pushButton_3->setText(enemy);
+            pushButton_3->disconnect(pushButton_3, SIGNAL(clicked()), this, SLOT(on_pushButton_3_clicked()));
         break;
     case 4:
             pushButton_4->setText(enemy);
+            pushButton_4->disconnect(pushButton_4, SIGNAL(clicked()), this, SLOT(on_pushButton_4_clicked()));
         break;
     case 5:
             pushButton_5->setText(enemy);
+            pushButton_5->disconnect(pushButton_5, SIGNAL(clicked()), this, SLOT(on_pushButton_5_clicked()));
         break;
     case 6:
             pushButton_6->setText(enemy);
+            pushButton_6->disconnect(pushButton_6, SIGNAL(clicked()), this, SLOT(on_pushButton_6_clicked()));
         break;
     case 7:
             pushButton_7->setText(enemy);
+            pushButton_7->disconnect(pushButton_7, SIGNAL(clicked()), this, SLOT(on_pushButton_7_clicked()));
         break;
     case 8:
             pushButton_8->setText(enemy);
+            pushButton_8->disconnect(pushButton_8, SIGNAL(clicked()), this, SLOT(on_pushButton_8_clicked()));
         break;
     case 9:
             pushButton_9->setText(enemy);
+            pushButton_9->disconnect(pushButton_9, SIGNAL(clicked()), this, SLOT(on_pushButton_9_clicked()));
         break;
     }
 }
@@ -415,7 +396,7 @@ bool XandO::isButtonEmpty(int value)
             return false;
         break;
     case 5:
-        if (pushButton_5->text()!="X"&&pushButton_5->text()!="O")
+        if (pushButton_5->text().isEmpty())
             return true;
         else
             return false;
@@ -444,5 +425,21 @@ bool XandO::isButtonEmpty(int value)
         else
             return false;
         break;
+    }
+}
+
+void XandO::buttonDisconnect(int value)
+{
+    switch (value)
+    {
+        case 1: pushButton->disconnect(pushButton, SIGNAL(clicked()), this, SLOT(on_pushButton_clicked())); break;
+        case 2: pushButton_2->disconnect(pushButton_2, SIGNAL(clicked()), this, SLOT(on_pushButton_2_clicked())); break;
+        case 3: pushButton_3->disconnect(pushButton_3, SIGNAL(clicked()), this, SLOT(on_pushButton_3_clicked())); break;
+        case 4: pushButton_4->disconnect(pushButton_4, SIGNAL(clicked()), this, SLOT(on_pushButton_4_clicked())); break;
+        case 5: pushButton_5->disconnect(pushButton_5, SIGNAL(clicked()), this, SLOT(on_pushButton_5_clicked())); break;
+        case 6: pushButton_6->disconnect(pushButton_6, SIGNAL(clicked()), this, SLOT(on_pushButton_6_clicked())); break;
+        case 7: pushButton_7->disconnect(pushButton_7, SIGNAL(clicked()), this, SLOT(on_pushButton_7_clicked())); break;
+        case 8: pushButton_8->disconnect(pushButton_8, SIGNAL(clicked()), this, SLOT(on_pushButton_8_clicked())); break;
+        case 9: pushButton_9->disconnect(pushButton_9, SIGNAL(clicked()), this, SLOT(on_pushButton_9_clicked())); break;
     }
 }

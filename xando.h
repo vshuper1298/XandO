@@ -22,10 +22,12 @@ void createWidgets();
 bool isAllButtonClicked();
 void isAllButtonUsed();
 void waitForMove();
-void disableButtons(bool value);
+void disableAllButtons(bool value);
 void enemyMove(int value);
 bool isButtonEmpty(int value);
 bool isAllButtonEmpty();
+void buttonDisconnect(int value);
+void buttonClicked(QPushButton *button, int number);
 
 private:
 QString side;
