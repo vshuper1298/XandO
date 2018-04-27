@@ -13,6 +13,11 @@ QWidget(parent)
 resize(300, 300);
 setWindowTitle("X's and O's");
 createWidgets();
+list << pushButton << pushButton << pushButton_2 << pushButton_3 << pushButton_4 << pushButton_5 << pushButton_6 << pushButton_7 << pushButton_8 << pushButton_9;
+qDebug() << list.indexOf(pushButton_2);
+qDebug() << list.at(2);
+qDebug() << list.at(3);
+
 
 connect(pushButton, SIGNAL(clicked()), this, SLOT(on_pushButton_clicked()));
 connect(pushButton_2, SIGNAL(clicked()), this, SLOT(on_pushButton_2_clicked()));
@@ -232,58 +237,58 @@ void XandO::gameOver()
     }
 }
 
-void XandO::buttonClicked(QPushButton *button, int number)
+void XandO::buttonClicked(QPushButton *button)
 {
     button->setText(side);
     button->setDisabled(true);
-    buttonDisconnect(number);
+    buttonDisconnect(list.indexOf(button));
     isAllButtonUsed();
     waitForMove();
 }
 
 void XandO::on_pushButton_clicked()
 {
-    buttonClicked(pushButton, 1);
+    buttonClicked(pushButton);
 }
 
 void XandO::on_pushButton_2_clicked()
 {
-    buttonClicked(pushButton_2, 2);
+    buttonClicked(pushButton_2);
 }
 
 void XandO::on_pushButton_3_clicked()
 {
-    buttonClicked(pushButton_3, 3);
+    buttonClicked(pushButton_3);
 }
 
 void XandO::on_pushButton_4_clicked()
 {
-    buttonClicked(pushButton_4, 4);
+    buttonClicked(pushButton_4);
 }
 
 void XandO::on_pushButton_5_clicked()
 {
-    buttonClicked(pushButton_5, 5);
+    buttonClicked(pushButton_5);
 }
 
 void XandO::on_pushButton_6_clicked()
 {
-    buttonClicked(pushButton_6, 6);
+    buttonClicked(pushButton_6);
 }
 
 void XandO::on_pushButton_7_clicked()
 {
-    buttonClicked(pushButton_7, 7);
+    buttonClicked(pushButton_7);
 }
 
 void XandO::on_pushButton_8_clicked()
 {
-    buttonClicked(pushButton_8, 8);
+    buttonClicked(pushButton_8);
 }
 
 void XandO::on_pushButton_9_clicked()
 {
-    buttonClicked(pushButton_9, 9);
+    buttonClicked(pushButton_9);
 }
 
 void XandO::waitForMove()

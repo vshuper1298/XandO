@@ -27,7 +27,7 @@ void enemyMove(int value);
 bool isButtonEmpty(int value);
 bool isAllButtonEmpty();
 void buttonDisconnect(int value);
-void buttonClicked(QPushButton *button, int number);
+void buttonClicked(QPushButton *button);
 
 private:
 QString side;
@@ -43,6 +43,7 @@ QPushButton *pushButton_6;
 QPushButton *pushButton_7;
 QPushButton *pushButton_8;
 QPushButton *pushButton_9;
+QList<QPushButton*> list;
 
 private slots:
     void setSide();
