@@ -26,6 +26,8 @@ void disableAllButtons(bool value);
 void enemyMove(int value);
 bool isButtonEmpty(int value);
 bool isAllButtonEmpty();
+bool isGameOver();
+bool isCombinationActive(int value1, int value2, int value3);
 void buttonDisconnect(int value);
 void buttonClicked(QPushButton *button);
 void endOfGameCombinaton(int value1, int value2, int value3);

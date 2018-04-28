@@ -38,6 +38,27 @@ void XandO::isAllButtonUsed()
         emit allButtonUsed();
 }
 
+bool XandO::isGameOver()
+{
+    if (isCombinationActive(1, 2, 3) ||
+        isCombinationActive(7, 8, 9) ||
+        isCombinationActive(1, 4, 7) ||
+        isCombinationActive(3, 6, 9) ||
+        isCombinationActive(2, 5, 8) ||
+        isCombinationActive(4, 5, 6) ||
+        isCombinationActive(1, 5, 9) ||
+        isCombinationActive(3, 5, 7) )
+        gameOver();
+}
+
+bool XandO::isCombinationActive(int value1, int value2, int value3)
+{
+    if (list.at(value1)->text() == list.at(value2)->text() && list.at(value1)->text() == list.at(value3)->text() && list.at(value2)->text() == list.at(value3)->text() && !list.at(value1)->text().isEmpty())
+        return true;
+    else
+        return false;
+}
+
 bool XandO::isAllButtonClicked()
 {
     if (pushButton->text()!=NULL && pushButton_2->text()!=NULL && pushButton_3->text()!=NULL && pushButton_4->text()!=NULL && pushButton_5->text()!=NULL && pushButton_6->text()!=NULL && pushButton_7->text()!=NULL && pushButton_8->text()!=NULL && pushButton_9->text()!=NULL)
@@ -99,7 +120,7 @@ void XandO::setSide()
 
 void XandO::endOfGameCombinaton(int value1, int value2, int value3)
 {
-    if (list.at(value1)->text() == list.at(value2)->text() && list.at(value1)->text()== list.at(value3)->text() && list.at(value2)->text() == list.at(value3)->text())
+    if (isCombinationActive(value1, value2, value3))
     {
         list.at(value1)->setStyleSheet("background-color: black");
         list.at(value2)->setStyleSheet("background-color: black");
@@ -130,6 +151,7 @@ void XandO::buttonClicked(QPushButton *button)
     button->setText(side);
     button->setDisabled(true);
     buttonDisconnect(list.indexOf(button));
+    isGameOver();
     isAllButtonUsed();
     waitForMove();
 }
@@ -200,6 +222,7 @@ void XandO::waitForMove()
         if (isAllButtonClicked()!=true)
             enemyMove(x);
     }
+    isGameOver();
     isAllButtonUsed();
     disableAllButtons(false);
 }
