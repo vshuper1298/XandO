@@ -28,6 +28,7 @@ bool isButtonEmpty(int value);
 bool isAllButtonEmpty();
 void buttonDisconnect(int value);
 void buttonClicked(QPushButton *button);
+void endOfGameCombinaton(int value1, int value2, int value3);
 
 private:
 QString side;

@@ -1,8 +1,6 @@
 #include "xando.h"
-#include <QSignalMapper>
 #include <QPushButton>
 #include <QGridLayout>
-#include <QLCDNumber>
 #include <QComboBox>
 #include <QLabel>
 #include <QDebug>
@@ -14,10 +12,6 @@ resize(300, 300);
 setWindowTitle("X's and O's");
 createWidgets();
 list << pushButton << pushButton << pushButton_2 << pushButton_3 << pushButton_4 << pushButton_5 << pushButton_6 << pushButton_7 << pushButton_8 << pushButton_9;
-qDebug() << list.indexOf(pushButton_2);
-qDebug() << list.at(2);
-qDebug() << list.at(3);
-
 
 connect(pushButton, SIGNAL(clicked()), this, SLOT(on_pushButton_clicked()));
 connect(pushButton_2, SIGNAL(clicked()), this, SLOT(on_pushButton_2_clicked()));
@@ -103,135 +97,29 @@ void XandO::setSide()
         enemy="X";
 }
 
+void XandO::endOfGameCombinaton(int value1, int value2, int value3)
+{
+    if (list.at(value1)->text() == list.at(value2)->text() && list.at(value1)->text()== list.at(value3)->text() && list.at(value2)->text() == list.at(value3)->text())
+    {
+        list.at(value1)->setStyleSheet("background-color: black");
+        list.at(value2)->setStyleSheet("background-color: black");
+        list.at(value3)->setStyleSheet("background-color: black");
+        label->setText(list.at(value1)->text()+" WINS");
+    }
+}
+
 void XandO::gameOver()
 {
-    if (pushButton->text()==side && pushButton_2->text()==side && pushButton_3->text()==side)
-    {
-        pushButton->setStyleSheet("background-color: black");
-        pushButton_2->setStyleSheet("background-color: black");
-        pushButton_3->setStyleSheet("background-color: black");
-        label->setText(side+" WINS");
-    }
+    endOfGameCombinaton(1, 2, 3);
+    endOfGameCombinaton(7, 8, 9);
+    endOfGameCombinaton(1, 4, 7);
+    endOfGameCombinaton(3, 6, 9);
+    endOfGameCombinaton(2, 5, 8);
+    endOfGameCombinaton(4, 5, 6);
+    endOfGameCombinaton(1, 5, 9);
+    endOfGameCombinaton(3, 5, 7);
 
-    else if (pushButton_7->text()==side && pushButton_8->text()==side && pushButton_9->text()==side)
-    {
-        pushButton_7->setStyleSheet("background-color: black");
-        pushButton_8->setStyleSheet("background-color: black");
-        pushButton_9->setStyleSheet("background-color: black");
-        label->setText(side+" WINS");
-    }
-
-    else if (pushButton->text()==side && pushButton_4->text()==side && pushButton_7->text()==side)
-    {
-        pushButton->setStyleSheet("background-color: black");
-        pushButton_4->setStyleSheet("background-color: black");
-        pushButton_7->setStyleSheet("background-color: black");
-        label->setText(side+" WINS");
-    }
-
-    else if (pushButton_3->text()==side && pushButton_6->text()==side && pushButton_9->text()==side)
-    {
-        pushButton_3->setStyleSheet("background-color: black");
-        pushButton_6->setStyleSheet("background-color: black");
-        pushButton_9->setStyleSheet("background-color: black");
-        label->setText(side+" WINS");
-    }
-
-    else if (pushButton_2->text()==side && pushButton_5->text()==side && pushButton_8->text()==side)
-    {
-        pushButton_2->setStyleSheet("background-color: black");
-        pushButton_5->setStyleSheet("background-color: black");
-        pushButton_8->setStyleSheet("background-color: black");
-        label->setText(side+" WINS");
-    }
-
-    else if (pushButton_4->text()==side && pushButton_5->text()==side && pushButton_6->text()==side)
-    {
-        pushButton_4->setStyleSheet("background-color: black");
-        pushButton_5->setStyleSheet("background-color: black");
-        pushButton_6->setStyleSheet("background-color: black");
-        label->setText(side+" WINS");
-    }
-
-    else if (pushButton->text()==side && pushButton_5->text()==side && pushButton_9->text()==side)
-    {
-        pushButton->setStyleSheet("background-color: black");
-        pushButton_5->setStyleSheet("background-color: black");
-        pushButton_9->setStyleSheet("background-color: black");
-        label->setText(side+" WINS");
-    }
-
-    else if (pushButton_3->text()==side && pushButton_5->text()==side && pushButton_7->text()==side)
-    {
-        pushButton_3->setStyleSheet("background-color: black");
-        pushButton_5->setStyleSheet("background-color: black");
-        pushButton_7->setStyleSheet("background-color: black");
-        label->setText(side+" WINS");
-    }
-    else if (pushButton->text()==enemy && pushButton_2->text()==enemy && pushButton_3->text()==enemy)
-    {
-        pushButton->setStyleSheet("background-color: black");
-        pushButton_2->setStyleSheet("background-color: black");
-        pushButton_3->setStyleSheet("background-color: black");
-        label->setText(enemy+" WINS");
-    }
-
-    else if (pushButton_7->text()==enemy && pushButton_8->text()==enemy && pushButton_9->text()==enemy)
-    {
-        pushButton_7->setStyleSheet("background-color: black");
-        pushButton_8->setStyleSheet("background-color: black");
-        pushButton_9->setStyleSheet("background-color: black");
-        label->setText(enemy+" WINS");
-    }
-
-    else if (pushButton->text()==enemy && pushButton_4->text()==enemy && pushButton_7->text()==enemy)
-    {
-        pushButton->setStyleSheet("background-color: black");
-        pushButton_4->setStyleSheet("background-color: black");
-        pushButton_7->setStyleSheet("background-color: black");
-        label->setText(enemy+" WINS");
-    }
-
-    else if (pushButton_3->text()==enemy && pushButton_6->text()==enemy && pushButton_9->text()==enemy)
-    {
-        pushButton_3->setStyleSheet("background-color: black");
-        pushButton_6->setStyleSheet("background-color: black");
-        pushButton_9->setStyleSheet("background-color: black");
-        label->setText(enemy+" WINS");
-    }
-
-    else if (pushButton_2->text()==enemy && pushButton_5->text()==enemy && pushButton_8->text()==enemy)
-    {
-        pushButton_2->setStyleSheet("background-color: black");
-        pushButton_5->setStyleSheet("background-color: black");
-        pushButton_8->setStyleSheet("background-color: black");
-        label->setText(enemy+" WINS");
-    }
-
-    else if (pushButton_4->text()==enemy && pushButton_5->text()==enemy && pushButton_6->text()==enemy)
-    {
-        pushButton_4->setStyleSheet("background-color: black");
-        pushButton_5->setStyleSheet("background-color: black");
-        pushButton_6->setStyleSheet("background-color: black");
-        label->setText(enemy+" WINS");
-    }
-
-    else if (pushButton->text()==enemy && pushButton_5->text()==enemy && pushButton_9->text()==enemy)
-    {
-        pushButton->setStyleSheet("background-color: black");
-        pushButton_5->setStyleSheet("background-color: black");
-        pushButton_9->setStyleSheet("background-color: black");
-        label->setText(enemy+" WINS");
-    }
-
-    else if (pushButton_3->text()==enemy && pushButton_5->text()==enemy && pushButton_7->text()==enemy)
-    {
-        pushButton_3->setStyleSheet("background-color: black");
-        pushButton_5->setStyleSheet("background-color: black");
-        pushButton_7->setStyleSheet("background-color: black");
-        label->setText(enemy+" WINS");
-    }
-    else
+    if (isAllButtonClicked()&&label->text().isEmpty())
     {
         label->setText("DRAW");
     }
