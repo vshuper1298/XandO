@@ -25,7 +25,11 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-        xando.cpp
+        xando.cpp \
+    startgamedialog.cpp
 
 HEADERS += \
-        xando.h
+        xando.h \
+    startgamedialog.h
+
+FORMS +=
