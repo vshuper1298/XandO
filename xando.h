@@ -20,7 +20,6 @@ private:
 // Окремий метод для створення інтерфейсу програми
 void createWidgets();
 bool isAllButtonClicked();
-void isAllButtonUsed();
 void waitForMove();
 void disableAllButtons(bool value);
 void enemyMove(int value);

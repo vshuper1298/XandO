@@ -23,19 +23,12 @@ connect(pushButton_7, SIGNAL(clicked()), this, SLOT(on_pushButton_7_clicked()));
 connect(pushButton_8, SIGNAL(clicked()), this, SLOT(on_pushButton_8_clicked()));
 connect(pushButton_9, SIGNAL(clicked()), this, SLOT(on_pushButton_9_clicked()));
 connect(comboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(setSide()));
-connect(this, SIGNAL(allButtonUsed()), this, SLOT(gameOver()));
 
 }
 
 XandO::~XandO()
 {
 
-}
-
-void XandO::isAllButtonUsed()
-{
-    if (isAllButtonClicked())
-        emit allButtonUsed();
 }
 
 bool XandO::isGameOver()
@@ -47,7 +40,8 @@ bool XandO::isGameOver()
         isCombinationActive(2, 5, 8) ||
         isCombinationActive(4, 5, 6) ||
         isCombinationActive(1, 5, 9) ||
-        isCombinationActive(3, 5, 7) )
+        isCombinationActive(3, 5, 7) ||
+        isAllButtonClicked())
         gameOver();
 }
 
@@ -152,7 +146,6 @@ void XandO::buttonClicked(QPushButton *button)
     button->setDisabled(true);
     buttonDisconnect(list.indexOf(button));
     isGameOver();
-    isAllButtonUsed();
     waitForMove();
 }
 
@@ -223,7 +216,6 @@ void XandO::waitForMove()
             enemyMove(x);
     }
     isGameOver();
-    isAllButtonUsed();
     disableAllButtons(false);
 }
 
