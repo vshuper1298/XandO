@@ -14,22 +14,24 @@ public:
 explicit XandO(QWidget *parent = 0);
 ~XandO();
 
-signals:
-    void allButtonUsed();
+public:
+void setSide(QString value);
+
 private:
-// Окремий метод для створення інтерфейсу програми
-void createWidgets();
 bool isAllButtonClicked();
-void waitForMove();
-void disableAllButtons(bool value);
-void enemyMove(int value);
 bool isButtonEmpty(int value);
 bool isAllButtonEmpty();
 bool isGameOver();
 bool isCombinationActive(int value1, int value2, int value3);
+
+void createWidgets();
+void waitForMove();
+void disableAllButtons(bool value);
+void enemyMove(int value);
 void buttonDisconnect(int value);
 void buttonClicked(QPushButton *button);
 void endOfGameCombinaton(int value1, int value2, int value3);
+void gameOver();
 
 private:
 QString side;
@@ -48,8 +50,6 @@ QPushButton *pushButton_9;
 QList<QPushButton*> list;
 
 private slots:
-    void setSide();
-    void gameOver();
     void on_pushButton_clicked();
     void on_pushButton_2_clicked();
     void on_pushButton_3_clicked();

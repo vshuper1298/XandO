@@ -22,8 +22,6 @@ connect(pushButton_6, SIGNAL(clicked()), this, SLOT(on_pushButton_6_clicked()));
 connect(pushButton_7, SIGNAL(clicked()), this, SLOT(on_pushButton_7_clicked()));
 connect(pushButton_8, SIGNAL(clicked()), this, SLOT(on_pushButton_8_clicked()));
 connect(pushButton_9, SIGNAL(clicked()), this, SLOT(on_pushButton_9_clicked()));
-connect(comboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(setSide()));
-
 }
 
 XandO::~XandO()
@@ -65,9 +63,6 @@ void XandO::createWidgets()
 {
 QGridLayout *windowLayout = new QGridLayout;
 setLayout(windowLayout);
-comboBox = new QComboBox;
-comboBox->addItem("X");
-comboBox->addItem("O");
 label = new QLabel;
 label->setVisible(true);
 pushButton = new QPushButton;
@@ -80,7 +75,6 @@ pushButton_7 = new QPushButton;
 pushButton_8 = new QPushButton;
 pushButton_9 = new QPushButton;
 
-windowLayout->addWidget(comboBox, 0, 0 , 1, 3);
 windowLayout->addWidget(pushButton, 1, 0);
 windowLayout->addWidget(pushButton_2, 1, 1);
 windowLayout->addWidget(pushButton_3, 1, 2);
@@ -103,41 +97,13 @@ pushButton_8->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
 pushButton_9->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
 }
 
-void XandO::setSide()
+void XandO::setSide(QString value)
 {
-    side=comboBox->currentText();
+    side=value;
     if (side=="X")
         enemy="O";
     else if (side=="O")
         enemy="X";
-}
-
-void XandO::endOfGameCombinaton(int value1, int value2, int value3)
-{
-    if (isCombinationActive(value1, value2, value3))
-    {
-        list.at(value1)->setStyleSheet("background-color: black");
-        list.at(value2)->setStyleSheet("background-color: black");
-        list.at(value3)->setStyleSheet("background-color: black");
-        label->setText(list.at(value1)->text()+" WINS");
-    }
-}
-
-void XandO::gameOver()
-{
-    endOfGameCombinaton(1, 2, 3);
-    endOfGameCombinaton(7, 8, 9);
-    endOfGameCombinaton(1, 4, 7);
-    endOfGameCombinaton(3, 6, 9);
-    endOfGameCombinaton(2, 5, 8);
-    endOfGameCombinaton(4, 5, 6);
-    endOfGameCombinaton(1, 5, 9);
-    endOfGameCombinaton(3, 5, 7);
-
-    if (isAllButtonClicked()&&label->text().isEmpty())
-    {
-        label->setText("DRAW");
-    }
 }
 
 void XandO::buttonClicked(QPushButton *button)
@@ -198,7 +164,6 @@ void XandO::waitForMove()
 {
     disableAllButtons(true);
     int x = (qrand() % 9)+1;
-    qDebug() << isButtonEmpty(x);
     if (isButtonEmpty(x))
         enemyMove(x);
     else
@@ -208,7 +173,6 @@ void XandO::waitForMove()
         {
             x = (qrand() % 9)+1;
             b=isButtonEmpty(x);
-            qDebug() << x;
             if (isAllButtonClicked())
                 break;
         }
@@ -255,4 +219,44 @@ void XandO::buttonDisconnect(int value)
         case 8: pushButton_8->disconnect(pushButton_8, SIGNAL(clicked()), this, SLOT(on_pushButton_8_clicked())); break;
         case 9: pushButton_9->disconnect(pushButton_9, SIGNAL(clicked()), this, SLOT(on_pushButton_9_clicked())); break;
     }
+}
+
+void XandO::endOfGameCombinaton(int value1, int value2, int value3)
+{
+    if (isCombinationActive(value1, value2, value3))
+    {
+        list.at(value1)->setStyleSheet("background-color: black");
+        list.at(value2)->setStyleSheet("background-color: black");
+        list.at(value3)->setStyleSheet("background-color: black");
+        label->setText(list.at(value1)->text()+" WINS");
+        disableAllButtons(true);
+    }
+}
+
+void XandO::gameOver()
+{
+    endOfGameCombinaton(1, 2, 3);
+    endOfGameCombinaton(7, 8, 9);
+    endOfGameCombinaton(1, 4, 7);
+    endOfGameCombinaton(3, 6, 9);
+    endOfGameCombinaton(2, 5, 8);
+    endOfGameCombinaton(4, 5, 6);
+    endOfGameCombinaton(1, 5, 9);
+    endOfGameCombinaton(3, 5, 7);
+
+    if (isAllButtonClicked()&&label->text().isEmpty())
+    {
+        label->setText("DRAW");
+    }
+
+    buttonDisconnect(1);
+    buttonDisconnect(2);
+    buttonDisconnect(3);
+    buttonDisconnect(4);
+    buttonDisconnect(5);
+    buttonDisconnect(6);
+    buttonDisconnect(7);
+    buttonDisconnect(8);
+    buttonDisconnect(9);
+
 }
