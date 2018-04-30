@@ -5,6 +5,7 @@
 #include <QString>
 #include <QComboBox>
 #include <QLabel>
+#include <QGridLayout>
 
 class QPushButton;
 class XandO : public QWidget
@@ -16,14 +17,15 @@ explicit XandO(QWidget *parent = 0);
 
 public:
 void setSide(QString value);
+QPushButton *pushButtonYes;
 
 private:
 bool isAllButtonClicked();
 bool isButtonEmpty(int value);
 bool isAllButtonEmpty();
-bool isGameOver();
 bool isCombinationActive(int value1, int value2, int value3);
 
+void isGameOver();
 void createWidgets();
 void waitForMove();
 void disableAllButtons(bool value);
@@ -34,6 +36,7 @@ void endOfGameCombinaton(int value1, int value2, int value3);
 void gameOver();
 
 private:
+QGridLayout *windowLayout;
 QString side;
 QString enemy;
 QComboBox *comboBox;
@@ -47,6 +50,7 @@ QPushButton *pushButton_6;
 QPushButton *pushButton_7;
 QPushButton *pushButton_8;
 QPushButton *pushButton_9;
+QPushButton *pushButtonNo;
 QList<QPushButton*> list;
 
 private slots:

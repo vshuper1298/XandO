@@ -11,6 +11,7 @@ class StartGameDialog : public QDialog
 public:
     explicit StartGameDialog(QWidget *parent = 0);
     ~StartGameDialog();
+        QString side;
 
 private:
     XandO game;

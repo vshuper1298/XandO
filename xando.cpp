@@ -1,9 +1,8 @@
 #include "xando.h"
+#include "startgamedialog.h"
 #include <QPushButton>
 #include <QGridLayout>
-#include <QComboBox>
 #include <QLabel>
-#include <QDebug>
 
 XandO::XandO(QWidget *parent) :
 QWidget(parent)
@@ -22,6 +21,8 @@ connect(pushButton_6, SIGNAL(clicked()), this, SLOT(on_pushButton_6_clicked()));
 connect(pushButton_7, SIGNAL(clicked()), this, SLOT(on_pushButton_7_clicked()));
 connect(pushButton_8, SIGNAL(clicked()), this, SLOT(on_pushButton_8_clicked()));
 connect(pushButton_9, SIGNAL(clicked()), this, SLOT(on_pushButton_9_clicked()));
+connect(pushButtonNo, SIGNAL(clicked()), this, SLOT(close()));
+connect(pushButtonYes, SIGNAL(clicked()), this, SLOT(close()));
 }
 
 XandO::~XandO()
@@ -29,7 +30,7 @@ XandO::~XandO()
 
 }
 
-bool XandO::isGameOver()
+void XandO::isGameOver()
 {
     if (isCombinationActive(1, 2, 3) ||
         isCombinationActive(7, 8, 9) ||
@@ -61,10 +62,10 @@ bool XandO::isAllButtonClicked()
 
 void XandO::createWidgets()
 {
-QGridLayout *windowLayout = new QGridLayout;
+windowLayout = new QGridLayout;
 setLayout(windowLayout);
 label = new QLabel;
-label->setVisible(true);
+label->setAlignment(Qt::AlignCenter);
 pushButton = new QPushButton;
 pushButton_2 = new QPushButton;
 pushButton_3 = new QPushButton;
@@ -74,6 +75,10 @@ pushButton_6 = new QPushButton;
 pushButton_7 = new QPushButton;
 pushButton_8 = new QPushButton;
 pushButton_9 = new QPushButton;
+pushButtonYes = new QPushButton;
+pushButtonYes->setText("Yes");
+pushButtonNo = new QPushButton;
+pushButtonNo->setText("No");
 
 windowLayout->addWidget(pushButton, 1, 0);
 windowLayout->addWidget(pushButton_2, 1, 1);
@@ -84,7 +89,6 @@ windowLayout->addWidget(pushButton_6, 2, 2);
 windowLayout->addWidget(pushButton_7, 3, 0);
 windowLayout->addWidget(pushButton_8, 3, 1);
 windowLayout->addWidget(pushButton_9, 3, 2);
-windowLayout->addWidget(label, 4, 0 , 1, 3);
 
 pushButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
 pushButton_2->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
@@ -95,6 +99,8 @@ pushButton_6->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
 pushButton_7->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
 pushButton_8->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
 pushButton_9->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+pushButtonYes->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+pushButtonNo->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
 }
 
 void XandO::setSide(QString value)
@@ -228,7 +234,7 @@ void XandO::endOfGameCombinaton(int value1, int value2, int value3)
         list.at(value1)->setStyleSheet("background-color: black");
         list.at(value2)->setStyleSheet("background-color: black");
         list.at(value3)->setStyleSheet("background-color: black");
-        label->setText(list.at(value1)->text()+" WINS");
+        label->setText(list.at(value1)->text()+" WINS. DO YOU WANT RESTART?");
         disableAllButtons(true);
     }
 }
@@ -246,7 +252,7 @@ void XandO::gameOver()
 
     if (isAllButtonClicked()&&label->text().isEmpty())
     {
-        label->setText("DRAW");
+        label->setText("DRAW. DO YOU WANT RESTART?");
     }
 
     buttonDisconnect(1);
@@ -259,4 +265,7 @@ void XandO::gameOver()
     buttonDisconnect(8);
     buttonDisconnect(9);
 
+    windowLayout->addWidget(label, 4, 0 , 1, 3);
+    windowLayout->addWidget(pushButtonYes, 5, 1 , 1, 1);
+    windowLayout->addWidget(pushButtonNo, 5, 2 , 1, 1);
 }

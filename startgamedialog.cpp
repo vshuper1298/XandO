@@ -1,6 +1,6 @@
 #include "startgamedialog.h"
-#include "ui_startgamedialog.h"
-
+#include <QPushButton>
+#include <QGridLayout>
 
 StartGameDialog::StartGameDialog(QWidget *parent) :
     QDialog(parent)
@@ -21,7 +21,7 @@ StartGameDialog::~StartGameDialog()
 
 void StartGameDialog::slotButtonX()
 {
-    game.setSide("X");
+    side = "X";
     pushButtonX->setDisabled(true);
     pushButtonO->setDisabled(false);
     pushButtonStart->setDisabled(false);
@@ -29,7 +29,7 @@ void StartGameDialog::slotButtonX()
 
 void StartGameDialog::slotButtonO()
 {
-    game.setSide("O");
+    side = "O";
     pushButtonO->setDisabled(true);
     pushButtonX->setDisabled(false);
     pushButtonStart->setDisabled(false);
@@ -37,8 +37,12 @@ void StartGameDialog::slotButtonO()
 
 void StartGameDialog::slotButtonStart()
 {
-    game.show();
-    this->close();
+    close();
+    XandO *game = new XandO;
+    game->setSide(side);
+    connect(game->pushButtonYes, SIGNAL(clicked()), this, SLOT(show()));
+    game->show();
+
 }
 
 void StartGameDialog::createWidgets()
