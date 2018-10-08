@@ -32,7 +32,7 @@ void disableAllButtons(bool value);
 void enemyMove(int value);
 void buttonDisconnect(int value);
 void buttonClicked(QPushButton *button);
-void endOfGameCombinaton(int value1, int value2, int value3);
+bool endOfGameCombinaton(int value1, int value2, int value3);
 void gameOver();
 
 private:

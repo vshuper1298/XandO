@@ -55,21 +55,6 @@ void XandO::isGameOver()
         isAllButtonClicked())
         gameOver();
 }
-//void XandO::isGameOver()
-//{
-//    if (isCombinationActive(1, 2, 3))
-//        if (isCombinationActive(7, 8, 9))
-//            if (isCombinationActive(1, 4, 7))
-//                if (isCombinationActive(3, 6, 9))
-//                    if (isCombinationActive(2, 5, 8))
-//                        if (isCombinationActive(4, 5, 6))
-//                            if (isCombinationActive(1, 5, 9))
-//                                if (isCombinationActive(3, 5, 7))
-
-
-//        isAllButtonClicked())
-//        gameOver();
-//}
 
 bool XandO::isCombinationActive(int value1, int value2, int value3)
 {
@@ -81,7 +66,7 @@ bool XandO::isCombinationActive(int value1, int value2, int value3)
 
 bool XandO::isAllButtonClicked()
 {
-    if (pushButton->text()!=NULL & pushButton_2->text()!=NULL && pushButton_3->text()!=NULL && pushButton_4->text()!=NULL && pushButton_5->text()!=NULL && pushButton_6->text()!=NULL && pushButton_7->text()!=NULL && pushButton_8->text()!=NULL && pushButton_9->text()!=NULL)
+    if (pushButton->text()!=NULL && pushButton_2->text()!=NULL && pushButton_3->text()!=NULL && pushButton_4->text()!=NULL && pushButton_5->text()!=NULL && pushButton_6->text()!=NULL && pushButton_7->text()!=NULL && pushButton_8->text()!=NULL && pushButton_9->text()!=NULL)
         return true;
     else
         return false;
@@ -254,7 +239,7 @@ void XandO::buttonDisconnect(int value)
     }
 }
 
-void XandO::endOfGameCombinaton(int value1, int value2, int value3)
+bool XandO::endOfGameCombinaton(int value1, int value2, int value3)
 {
     if (isCombinationActive(value1, value2, value3))
     {
@@ -263,21 +248,27 @@ void XandO::endOfGameCombinaton(int value1, int value2, int value3)
         list.at(value3)->setStyleSheet("background-color: black");
         label->setText(list.at(value1)->text()+" WINS. DO YOU WANT RESTART?");
         disableAllButtons(true);
+        return true;
+    }
+    else
+    {
+        return false;
     }
 }
 
 void XandO::gameOver()
 {
-    endOfGameCombinaton(1, 2, 3);
-    endOfGameCombinaton(7, 8, 9);
-    endOfGameCombinaton(1, 4, 7);
-    endOfGameCombinaton(3, 6, 9);
-    endOfGameCombinaton(2, 5, 8);
-    endOfGameCombinaton(4, 5, 6);
-    endOfGameCombinaton(1, 5, 9);
-    endOfGameCombinaton(3, 5, 7);
-
-    if (isAllButtonClicked()&&label->text().isEmpty())
+    if(!endOfGameCombinaton(1, 2, 3))
+    {
+        if(!endOfGameCombinaton(7, 8, 9))
+            if(!endOfGameCombinaton(1, 4, 7))
+                if(!endOfGameCombinaton(3, 6, 9))
+                    if(!endOfGameCombinaton(2, 5, 8))
+                        if(!endOfGameCombinaton(4, 5, 6))
+                            if(!endOfGameCombinaton(1, 5, 9))
+                                endOfGameCombinaton(3, 5, 7);
+    }
+    else if (isAllButtonClicked()&&label->text().isEmpty())
     {
         label->setText("DRAW. DO YOU WANT RESTART?");
     }
