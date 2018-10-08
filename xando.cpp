@@ -27,7 +27,19 @@ connect(pushButtonYes, SIGNAL(clicked()), this, SLOT(close()));
 
 XandO::~XandO()
 {
-
+    delete windowLayout;
+    delete label;
+    delete pushButton;
+    delete pushButton_2;
+    delete pushButton_3;
+    delete pushButton_4;
+    delete pushButton_5;
+    delete pushButton_6;
+    delete pushButton_7;
+    delete pushButton_8;
+    delete pushButton_9;
+    delete pushButtonYes;
+    delete pushButtonNo;
 }
 
 void XandO::isGameOver()
@@ -43,6 +55,21 @@ void XandO::isGameOver()
         isAllButtonClicked())
         gameOver();
 }
+//void XandO::isGameOver()
+//{
+//    if (isCombinationActive(1, 2, 3))
+//        if (isCombinationActive(7, 8, 9))
+//            if (isCombinationActive(1, 4, 7))
+//                if (isCombinationActive(3, 6, 9))
+//                    if (isCombinationActive(2, 5, 8))
+//                        if (isCombinationActive(4, 5, 6))
+//                            if (isCombinationActive(1, 5, 9))
+//                                if (isCombinationActive(3, 5, 7))
+
+
+//        isAllButtonClicked())
+//        gameOver();
+//}
 
 bool XandO::isCombinationActive(int value1, int value2, int value3)
 {
@@ -54,7 +81,7 @@ bool XandO::isCombinationActive(int value1, int value2, int value3)
 
 bool XandO::isAllButtonClicked()
 {
-    if (pushButton->text()!=NULL && pushButton_2->text()!=NULL && pushButton_3->text()!=NULL && pushButton_4->text()!=NULL && pushButton_5->text()!=NULL && pushButton_6->text()!=NULL && pushButton_7->text()!=NULL && pushButton_8->text()!=NULL && pushButton_9->text()!=NULL)
+    if (pushButton->text()!=NULL & pushButton_2->text()!=NULL && pushButton_3->text()!=NULL && pushButton_4->text()!=NULL && pushButton_5->text()!=NULL && pushButton_6->text()!=NULL && pushButton_7->text()!=NULL && pushButton_8->text()!=NULL && pushButton_9->text()!=NULL)
         return true;
     else
         return false;

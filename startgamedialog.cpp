@@ -16,7 +16,10 @@ StartGameDialog::StartGameDialog(QWidget *parent) :
 
 StartGameDialog::~StartGameDialog()
 {
-
+    delete label;
+    delete pushButtonX;
+    delete pushButtonO;
+    delete pushButtonStart;
 }
 
 void StartGameDialog::slotButtonX()
