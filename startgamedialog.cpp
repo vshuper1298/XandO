@@ -50,26 +50,26 @@ void StartGameDialog::slotButtonStart()
 
 void StartGameDialog::createWidgets()
 {
-QGridLayout *windowLayout = new QGridLayout;
-setLayout(windowLayout);
+    QGridLayout *windowLayout = new QGridLayout;
+    setLayout(windowLayout);
 
-label = new QLabel;
-label->setAlignment(Qt::AlignCenter);
-label->setText("Choose your side!");
-pushButtonX = new QPushButton;
-pushButtonX->setText("X");
-pushButtonO = new QPushButton;
-pushButtonO->setText("O");
-pushButtonStart = new QPushButton;
-pushButtonStart->setText("Start");
-pushButtonStart->setDisabled(true);
+    label = new QLabel;
+    label->setAlignment(Qt::AlignCenter);
+    label->setText("Choose your side!");
+    pushButtonX = new QPushButton;
+    pushButtonX->setText("X");
+    pushButtonO = new QPushButton;
+    pushButtonO->setText("O");
+    pushButtonStart = new QPushButton;
+    pushButtonStart->setText("Start");
+    pushButtonStart->setDisabled(true);
 
-windowLayout->addWidget(label, 1, 0, 1, 2);
-windowLayout->addWidget(pushButtonX, 2, 0);
-windowLayout->addWidget(pushButtonO, 2, 1);
-windowLayout->addWidget(pushButtonStart, 3, 0 , 1, 2);
+    windowLayout->addWidget(label, 1, 0, 1, 2);
+    windowLayout->addWidget(pushButtonX, 2, 0);
+    windowLayout->addWidget(pushButtonO, 2, 1);
+    windowLayout->addWidget(pushButtonStart, 3, 0 , 1, 2);
 
-pushButtonX->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
-pushButtonO->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
-pushButtonStart->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+    pushButtonX->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+    pushButtonO->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+    pushButtonStart->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
 }

@@ -7,22 +7,22 @@
 XandO::XandO(QWidget *parent) :
 QWidget(parent)
 {
-resize(300, 300);
-setWindowTitle("X's and O's");
-createWidgets();
-list << pushButton << pushButton << pushButton_2 << pushButton_3 << pushButton_4 << pushButton_5 << pushButton_6 << pushButton_7 << pushButton_8 << pushButton_9;
+    resize(300, 300);
+    setWindowTitle("X's and O's");
+    createWidgets();
+    list << pushButton << pushButton << pushButton_2 << pushButton_3 << pushButton_4 << pushButton_5 << pushButton_6 << pushButton_7 << pushButton_8 << pushButton_9;
 
-connect(pushButton, SIGNAL(clicked()), this, SLOT(on_pushButton_clicked()));
-connect(pushButton_2, SIGNAL(clicked()), this, SLOT(on_pushButton_2_clicked()));
-connect(pushButton_3, SIGNAL(clicked()), this, SLOT(on_pushButton_3_clicked()));
-connect(pushButton_4, SIGNAL(clicked()), this, SLOT(on_pushButton_4_clicked()));
-connect(pushButton_5, SIGNAL(clicked()), this, SLOT(on_pushButton_5_clicked()));
-connect(pushButton_6, SIGNAL(clicked()), this, SLOT(on_pushButton_6_clicked()));
-connect(pushButton_7, SIGNAL(clicked()), this, SLOT(on_pushButton_7_clicked()));
-connect(pushButton_8, SIGNAL(clicked()), this, SLOT(on_pushButton_8_clicked()));
-connect(pushButton_9, SIGNAL(clicked()), this, SLOT(on_pushButton_9_clicked()));
-connect(pushButtonNo, SIGNAL(clicked()), this, SLOT(close()));
-connect(pushButtonYes, SIGNAL(clicked()), this, SLOT(close()));
+    connect(pushButton, SIGNAL(clicked()), this, SLOT(on_pushButton_clicked()));
+    connect(pushButton_2, SIGNAL(clicked()), this, SLOT(on_pushButton_2_clicked()));
+    connect(pushButton_3, SIGNAL(clicked()), this, SLOT(on_pushButton_3_clicked()));
+    connect(pushButton_4, SIGNAL(clicked()), this, SLOT(on_pushButton_4_clicked()));
+    connect(pushButton_5, SIGNAL(clicked()), this, SLOT(on_pushButton_5_clicked()));
+    connect(pushButton_6, SIGNAL(clicked()), this, SLOT(on_pushButton_6_clicked()));
+    connect(pushButton_7, SIGNAL(clicked()), this, SLOT(on_pushButton_7_clicked()));
+    connect(pushButton_8, SIGNAL(clicked()), this, SLOT(on_pushButton_8_clicked()));
+    connect(pushButton_9, SIGNAL(clicked()), this, SLOT(on_pushButton_9_clicked()));
+    connect(pushButtonNo, SIGNAL(clicked()), this, SLOT(close()));
+    connect(pushButtonYes, SIGNAL(clicked()), this, SLOT(close()));
 }
 
 XandO::~XandO()
@@ -58,7 +58,10 @@ void XandO::isGameOver()
 
 bool XandO::isCombinationActive(int value1, int value2, int value3)
 {
-    if (list.at(value1)->text() == list.at(value2)->text() && list.at(value1)->text() == list.at(value3)->text() && list.at(value2)->text() == list.at(value3)->text() && !list.at(value1)->text().isEmpty())
+    if (list.at(value1)->text() == list.at(value2)->text() &&
+        list.at(value1)->text() == list.at(value3)->text() &&
+        list.at(value2)->text() == list.at(value3)->text() &&
+        !list.at(value1)->text().isEmpty())
         return true;
     else
         return false;
@@ -66,7 +69,11 @@ bool XandO::isCombinationActive(int value1, int value2, int value3)
 
 bool XandO::isAllButtonClicked()
 {
-    if (pushButton->text()!=NULL && pushButton_2->text()!=NULL && pushButton_3->text()!=NULL && pushButton_4->text()!=NULL && pushButton_5->text()!=NULL && pushButton_6->text()!=NULL && pushButton_7->text()!=NULL && pushButton_8->text()!=NULL && pushButton_9->text()!=NULL)
+    if (pushButton->text()!=NULL && pushButton_2->text()!=NULL &&
+        pushButton_3->text()!=NULL && pushButton_4->text()!=NULL &&
+        pushButton_5->text()!=NULL && pushButton_6->text()!=NULL &&
+        pushButton_7->text()!=NULL && pushButton_8->text()!=NULL &&
+        pushButton_9->text()!=NULL)
         return true;
     else
         return false;
@@ -74,45 +81,45 @@ bool XandO::isAllButtonClicked()
 
 void XandO::createWidgets()
 {
-windowLayout = new QGridLayout;
-setLayout(windowLayout);
-label = new QLabel;
-label->setAlignment(Qt::AlignCenter);
-pushButton = new QPushButton;
-pushButton_2 = new QPushButton;
-pushButton_3 = new QPushButton;
-pushButton_4 = new QPushButton;
-pushButton_5 = new QPushButton;
-pushButton_6 = new QPushButton;
-pushButton_7 = new QPushButton;
-pushButton_8 = new QPushButton;
-pushButton_9 = new QPushButton;
-pushButtonYes = new QPushButton;
-pushButtonYes->setText("Yes");
-pushButtonNo = new QPushButton;
-pushButtonNo->setText("No");
+    windowLayout = new QGridLayout;
+    setLayout(windowLayout);
+    label = new QLabel;
+    label->setAlignment(Qt::AlignCenter);
+    pushButton = new QPushButton;
+    pushButton_2 = new QPushButton;
+    pushButton_3 = new QPushButton;
+    pushButton_4 = new QPushButton;
+    pushButton_5 = new QPushButton;
+    pushButton_6 = new QPushButton;
+    pushButton_7 = new QPushButton;
+    pushButton_8 = new QPushButton;
+    pushButton_9 = new QPushButton;
+    pushButtonYes = new QPushButton;
+    pushButtonYes->setText("Yes");
+    pushButtonNo = new QPushButton;
+    pushButtonNo->setText("No");
 
-windowLayout->addWidget(pushButton, 1, 0);
-windowLayout->addWidget(pushButton_2, 1, 1);
-windowLayout->addWidget(pushButton_3, 1, 2);
-windowLayout->addWidget(pushButton_4, 2, 0);
-windowLayout->addWidget(pushButton_5, 2, 1);
-windowLayout->addWidget(pushButton_6, 2, 2);
-windowLayout->addWidget(pushButton_7, 3, 0);
-windowLayout->addWidget(pushButton_8, 3, 1);
-windowLayout->addWidget(pushButton_9, 3, 2);
+    windowLayout->addWidget(pushButton, 1, 0);
+    windowLayout->addWidget(pushButton_2, 1, 1);
+    windowLayout->addWidget(pushButton_3, 1, 2);
+    windowLayout->addWidget(pushButton_4, 2, 0);
+    windowLayout->addWidget(pushButton_5, 2, 1);
+    windowLayout->addWidget(pushButton_6, 2, 2);
+    windowLayout->addWidget(pushButton_7, 3, 0);
+    windowLayout->addWidget(pushButton_8, 3, 1);
+    windowLayout->addWidget(pushButton_9, 3, 2);
 
-pushButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
-pushButton_2->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
-pushButton_3->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
-pushButton_4->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
-pushButton_5->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
-pushButton_6->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
-pushButton_7->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
-pushButton_8->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
-pushButton_9->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
-pushButtonYes->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
-pushButtonNo->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+    pushButton->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+    pushButton_2->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+    pushButton_3->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+    pushButton_4->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+    pushButton_5->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+    pushButton_6->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+    pushButton_7->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+    pushButton_8->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+    pushButton_9->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+    pushButtonYes->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+    pushButtonNo->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
 }
 
 void XandO::setSide(QString value)
@@ -189,7 +196,7 @@ void XandO::waitForMove()
         bool b = false;
         while (b != true)
         {
-            x = (qrand() % 9)+1;
+            x = (qrand() % 9) + 1;
             b=isButtonEmpty(x);
             if (isAllButtonClicked())
                 break;
@@ -268,7 +275,7 @@ void XandO::gameOver()
                             if(!endOfGameCombinaton(1, 5, 9))
                                 endOfGameCombinaton(3, 5, 7);
     }
-    else if (isAllButtonClicked()&&label->text().isEmpty())
+    else if (isAllButtonClicked() && label->text().isEmpty())
     {
         label->setText("DRAW. DO YOU WANT RESTART?");
     }
